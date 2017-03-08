@@ -1,0 +1,96 @@
+
+Introduction to go 
+Basics, tools, resources and patterns
+
+Girish Ramnani
+Intern, Morgan Stanley
+girishramnani95@gmail.com
+https://girishramnani.github.io/
+@girishramnani95
+
+
+* Golang
+
+- Created at google in 2009
+- Currently at version 1.8
+- Staticly typed, garbage collected language
+
+* Companies using go 
+
+.image assets/images/intel.jpg 100 100 
+.image assets/images/cloudflare.jpg 100 100
+.image assets/images/digitalocean.png 100 100
+.image assets/images/dropbox.jpg 100 100
+
+* continued ..
+
+.image assets/images/hashicorp.jpg
+.image assets/images/influxdata.jpg
+
+
+
+* Famous OSS in go 
+
++ Kubernetes
++ docker
++ influxdb
++ consul
++ pachyderm
++ minio
+
+
+* Stats for Golang
+
+.image assets/images/golangusage1.png
+
+
+* Hello world
+
+.background assets/images/gopher.jpeg
+
+.play -edit assets/code/hello_world.go
+
+* Whats makes it so good 
+
++ Compiles to native Code ( well so does C, C++)
++ Concurrent Garbage collector
++ Small language ( 27 Keywords )
++ Really easy to learn
+
+.image assets/images/gcgo.png 400 _
+
+* Lets begin 
+
+* Variables and const
+
+* Error hunting
+
+.play -edit assets/code/error_1.go 
+
+* Error hunting 
+
+.play -edit assets/code/error_2.go 
+
+* Guess the output
+
+.play -edit assets/code/guess_a_1.go 
+
+* Guess the output 
+
+.play -edit assets/code/guess_s_1.go 
+
+* Guess the output 
+
+.play -edit assets/code/guess_2.go 
+
+* Code Smell
+
+.play -edit assets/code/code_smell_1.go
+
+* Guess the output ( Intermediate )
+
+.play -edit assets/code/a_error_1.go
+
+
+
+
