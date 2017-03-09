@@ -31,24 +31,18 @@ https://girishramnani.github.io/
 
 * Famous OSS in go 
 
-+ Kubernetes
-+ docker
-+ influxdb
-+ consul
-+ pachyderm
-+ minio
+.link https://github.com/kubernetes/kubernetes Kubernetes
+.link https://github.com/weaveworks/weave Weave
+.link https://github.com/influxdata/influxdb Influxdb
+.link https://github.com/hashicorp/consul Consul
+.link https://github.com/pachyderm/pachyderm Pachyderm
+.link https://github.com/minio/minio Minio
+.link https://github.com/docker/docker Docker 
 
 
 * Stats for Golang
 
 .image assets/images/golangusage1.png
-
-
-* Hello world
-
-.background assets/images/gopher.jpeg
-
-.play -edit assets/code/hello_world.go
 
 * Whats makes it so good 
 
@@ -61,7 +55,89 @@ https://girishramnani.github.io/
 
 * Lets begin 
 
-* Variables and const
+* Lets move rookie stuff out of the way
+
+.image assets/images/intro_1.png 
+
+* Hello world
+
+.background assets/images/gopher.jpeg
+
+.play -edit assets/code/hello_world.go
+
+* Variables and types 
+
+.play -edit assets/code/v_a_t.go
+
+* Functions
+
+Functions are first class citizens.
+
+.play -edit assets/code/functions.go
+
+* Loops 
+
+.image assets/images/forfinal.png
+
+
+* Arrays and slices 
+
+- Arrays have fixed length
+- Slices have flexible length 
+- Slices are passed by reference, arrays are not
+
+* Example 
+
+.play -edit assets/code/slices_arrays.go
+
+
+* Maps 
+
+- Unordered 
+- passed by reference 
+- you can use "for range" to interate over the map 
+ 
+ for key,value := range map {
+
+ }
+
+
+- example 
+
+ var someMap map[string]float64
+ someMap = make(map[string]float64)
+
+ // shortcut
+ someMap := make(map[string]float64) 
+ 
+ // delete a key 
+ someMap = delete(someMap,<Key>) 
+
+* Lets take a breather 
+
+.image assets/images/joke.jpg
+
+* More
+
+.image assets/images/joke2.jpg 
+
+* Structs 
+
+.code assets/code/structs.go 
+
+* Try this on your laptop 
+
+.play assets/code/structs.go /^func main/,/^}/
+    
+
+* Concurrency 
+
+.image assets/images/concurrency_quote.png 500 _
+
+* Concurrency Model 
+
+Golang has one of the most powerful concurrency models
+
 
 * Error hunting
 
@@ -91,6 +167,15 @@ https://girishramnani.github.io/
 
 .play -edit assets/code/a_error_1.go
 
+* Lets do some tdd now 
 
+A test file for you and you need to pass all the 
+tests. 
+
+Task :- Find hamming distance between two DNA strands.
+
+.link Hamming.zip assets/code/hamming.zip 
+
+* Lets go pro 
 
 
