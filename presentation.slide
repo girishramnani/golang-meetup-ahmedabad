@@ -13,7 +13,10 @@ https://girishramnani.github.io/
 
 - Created at google in 2009
 - Currently at version 1.8
-- Staticly typed, garbage collected language
+- Started as a systems language 
+- Like C but simpler
+- Produces compiled code 
+- Statically typed, garbage collected language
 
 * Companies using go 
 
@@ -52,6 +55,27 @@ https://girishramnani.github.io/
 + Really easy to learn
 
 .image assets/images/gcgo.png 400 _
+
+
+* Places to learn 
+
+.link http://exercism.io/ Exercism
+.link https://github.com/avelino/awesome-go#websites Awesome Go
+.link https://blog.gopheracademy.com/ Gopher Academy
+.link https://dave.cheney.net Dave Cheney's Blog
+.link https://www.goinggo.net/ William Kennedy's Blog 
+
+
+* Tools 
+
+.link https://godoc.org/golang.org/x/tools/cmd/goimports goimports 
+.link https://golang.org/cmd/gofmt/ gofmt 
+.link https://github.com/golang/lint golint
+
+ go tool pprof
+
+ go tool trace
+
 
 * Lets begin 
 
@@ -127,7 +151,7 @@ Functions are first class citizens.
 
 * Try this on your laptop 
 
-.play assets/code/structs.go /^func main/,/^}/
+.play -edit assets/code/structs.go /^func main/,/^}/
     
 
 * Concurrency 
@@ -136,16 +160,27 @@ Functions are first class citizens.
 
 * Concurrency Model 
 
-Golang has one of the most powerful concurrency models
+* Golang has one of the most powerful concurrency models
 
+* Go Routines
+
+.image assets/images/concurrency.png
+
+* How to create a goroutine?
+
+* Just add "go" in front of a function 
+
+.play -edit assets/code/concurrent_1.go
+
+* Wait Groups 
+
+.play -edit assets/code/concurrent_2.go  /^func main/,/^}/
+
+* Exercise time 
 
 * Error hunting
 
 .play -edit assets/code/error_1.go 
-
-* Error hunting 
-
-.play -edit assets/code/error_2.go 
 
 * Guess the output
 
@@ -159,6 +194,14 @@ Golang has one of the most powerful concurrency models
 
 .play -edit assets/code/guess_2.go 
 
+* Guess the output 
+
+.play -edit assets/code/guess_3.go  /^func main/,/^}/
+
+* Guess the output 
+
+.play -edit assets/code/guess_4.go /^func main/,/^}/
+
 * Code Smell
 
 .play -edit assets/code/code_smell_1.go
@@ -169,13 +212,19 @@ Golang has one of the most powerful concurrency models
 
 * Lets do some tdd now 
 
-A test file for you and you need to pass all the 
-tests. 
+A test file for you and you need to pass all the tests. 
 
 Task :- Find hamming distance between two DNA strands.
 
-.link Hamming.zip assets/code/hamming.zip 
+.link assets/code/hamming.zip Hamming.zip 
 
-* Lets go pro 
+* Lets go pro
+
+I have some books but dont know the titles for them.
+I have a  ~1 GB CSV file for you to find the names for me. 
+
+.link assets/code/libgen/libgen.zip Books.zip
+
+
 
 

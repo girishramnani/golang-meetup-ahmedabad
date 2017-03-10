@@ -6,12 +6,11 @@ import (
 	"os"
 )
 
-// User is a struct that will be used as orm mapping
 type User struct {
-	Firstname string `json:"first_name"`
+	Firstname string 
 	Lastname  string
-	Email     string `json:"email,omitempty"`
-	Password  string `json:"-"`
+	Email     string 
+	Password  string 
 }
 
 func (u *User) FullName() string {
