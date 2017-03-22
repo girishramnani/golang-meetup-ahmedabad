@@ -3,7 +3,6 @@ Introduction to go
 Basics, tools, resources and patterns
 
 Girish Ramnani
-Intern, Morgan Stanley
 girishramnani95@gmail.com
 https://girishramnani.github.io/
 @girishramnani95
@@ -210,20 +209,7 @@ Functions are first class citizens.
 
 .play -edit assets/code/a_error_1.go
 
-* Lets do some tdd now 
 
-A test file for you and you need to pass all the tests. 
-
-Task :- Find hamming distance between two DNA strands.
-
-.link assets/code/hamming.zip Hamming.zip 
-
-* Lets go pro
-
-I have some books but dont know the titles for them.
-I have a  ~1 GB CSV file for you to find the names for me. 
-
-.link assets/code/libgen/libgen.zip Books.zip
 
 
 
