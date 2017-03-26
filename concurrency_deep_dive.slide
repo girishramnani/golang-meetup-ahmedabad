@@ -4,13 +4,24 @@ Concurrency Deep Dive
 Girish Ramnani
 girishramnani95@gmail.com
 
+
+
 * Go routines
 
-Internals of go routines
+
+* Internals of go routines
+
 
 * Channels
 
+* CSP
 
+
+* Exercise
+
+Lets parallelize this code 
+
+.play assets_cdd/code/getpages.go 
 
 * Lets start with a simple pipeline
 
