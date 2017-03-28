@@ -4,7 +4,9 @@ Concurrency Deep Dive
 Girish Ramnani
 girishramnani95@gmail.com
 
+* Overview
 
+- 
 
 * Go routines
 
@@ -13,6 +15,7 @@ girishramnani95@gmail.com
 
 
 * Channels
+
 
 * CSP
 
@@ -35,5 +38,22 @@ Lets parallelize this code
 
 .play assets_cdd/code/pipeline.go /^func main/,/^}/
 
+* Exercise 1
 
+Find the index of one from the right side for a data word.
+    Eg. 1001000 -> 3
+
+
+* Exercise 2 (Intermediate) 
+
+You have given a database which is ACID complient or so it says!!.
+Now to be sure you need to implement pessimistic Concurrency control 
+over the database. Try to not look the whole DB for a single transaction.
+Just create the locking mechanism here.
+
+.link assets_cdd/code/mapped_mutex.zip testfile
+
+* Exercise 1 - continued (Intermediate)
+
+Read the paper
 
