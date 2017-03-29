@@ -8,6 +8,14 @@ girishramnani95@gmail.com
 
 - 
 
+* Concurrency is not parallelism
+
+Concurrency is not parallelism, although it enables parallelism. 
+
+If you have only one processor, your program can still be concurrent but it cannot be parallel. 
+
+On the other hand, a well-written concurrent program might run efficiently in parallel on a multiprocessor.
+
 * Go routines
 
 
@@ -24,7 +32,19 @@ girishramnani95@gmail.com
 
 Lets parallelize this code 
 
-.play assets_cdd/code/getpages.go 
+.play assets_cdd/code/getpages.go /^func main/,/^}/
+
+* Lets go simple 
+
+By creating a function
+
+.code assets_cdd/code/getpages_c1.go /^func getHTML/,/^}/
+
+* So the main func becomes
+
+.play assets_cdd/code/getpages_c1.go /^func main/,/^}/ 
+
+* Some thing wrong there?
 
 * Lets start with a simple pipeline
 
@@ -38,20 +58,25 @@ Lets parallelize this code
 
 .play assets_cdd/code/pipeline.go /^func main/,/^}/
 
+.link assets_cdd/code/pipeline.go here is the full code
+
 * Exercise 1
 
 Find the index of one from the right side for a data word.
     Eg. 1001000 -> 3
 
+.link assets_cdd/code/one_finder.zip Testfile 
 
-* Exercise 2 (Intermediate) 
+* Exercise 2
+
+* Exercise 3 (Intermediate) 
 
 You have given a database which is ACID complient or so it says!!.
 Now to be sure you need to implement pessimistic Concurrency control 
 over the database. Try to not look the whole DB for a single transaction.
 Just create the locking mechanism here.
 
-.link assets_cdd/code/mapped_mutex.zip testfile
+.link assets_cdd/code/mapped_mutex.zip Testfile
 
 * Exercise 1 - continued (Intermediate)
 
