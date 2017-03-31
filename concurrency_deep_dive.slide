@@ -51,7 +51,7 @@ girishramnani95@gmail.com
 - Traceability
 - Synchronizing Receivers
 
-* Communicating Sequential Processes 
+* Callbacks and Promises
 
 *** Advantages
 
@@ -80,12 +80,25 @@ girishramnani95@gmail.com
 
 - No thread primitives
 - Go routines 
-
+- Channels 
 
 * Go routines
 
+.play assets_cdd/code/goroutine_1.go 
+
+* Using WaitGroup
+
+.play assets_cdd/code/goroutine_1_m.go 
+
+* Example 
+
+.link stockData assets_cdd/code/goroutine_2.go
 
 * Channels
+
+
+
+* Using Channels
 
 
 * Exercise
@@ -110,7 +123,7 @@ By creating a function
 
 .code assets_cdd/code/pipeline.go /^func generate/,/^}/
 
-* the pipe
+* The pipe
 
 .code assets_cdd/code/pipeline.go /^func pipe/,/^}/
 
@@ -124,8 +137,6 @@ By creating a function
 
 Find the index of one from the right side for a data word.
     Eg. 1001000 -> 3
-
-.link assets_cdd/code/one_finder.zip Testfile 
 
 * Exercise 2 (Intermediate) 
 
