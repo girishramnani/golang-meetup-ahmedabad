@@ -6,7 +6,7 @@ girishramnani95@gmail.com
 
 * Overview
 
-- 
+-  
 
 * Concurrency is not parallelism
 
@@ -67,9 +67,7 @@ Find the index of one from the right side for a data word.
 
 .link assets_cdd/code/one_finder.zip Testfile 
 
-* Exercise 2
-
-* Exercise 3 (Intermediate) 
+* Exercise 2 (Intermediate) 
 
 You have given a database which is ACID complient or so it says!!.
 Now to be sure you need to implement pessimistic Concurrency control 
@@ -78,7 +76,4 @@ Just create the locking mechanism here.
 
 .link assets_cdd/code/mapped_mutex.zip Testfile
 
-* Exercise 1 - continued (Intermediate)
-
-Read the paper
-
+* Thank you 
