@@ -6,26 +6,86 @@ girishramnani95@gmail.com
 
 * Overview
 
--  
+- Theory
+- Concurrency Models
+- CSP 
+- Channels and go routines
+- Concurrency patterns
+- atomic package
+- Exercises
 
 * Concurrency is not parallelism
 
-Concurrency is not parallelism, although it enables parallelism. 
+.image assets_cdd/images/candp.png 480 _
 
-If you have only one processor, your program can still be concurrent but it cannot be parallel. 
+* Concurrency Models
 
-On the other hand, a well-written concurrent program might run efficiently in parallel on a multiprocessor.
+- Processor Threads
+- Events
+- Callbacks and Promises
+- Communicating Sequential Processes
+
+* Process Threads
+
+*** Advantages
+
+- Control 
+- Performance
+- Responsive User Interface
+
+*** Disadvantages
+
+- Poor Performance
+- Memory Consumption
+- Shared Memory 
+
+* Events
+
+*** Advantages
+
+- Memory Isolation
+- Separate Callee from caller
+
+*** Disadvantages
+
+- Traceability
+- Synchronizing Receivers
+
+* Communicating Sequential Processes 
+
+*** Advantages
+
+- Memory Isolation
+- Simplifying async operations
+
+*** Disadvantages
+
+- Pyramid of Doom
+- Inversion of control issue
+
+* Communicating Sequential Processes ( Gold!! )
+
+*** Advantages
+
+- Decoupled Actors
+- Multiple Consumers ( Handlers )
+- Message Isolation
+
+*** Disadvantages
+
+- Complicated Mental Model
+- Traceability
+
+* Concurrency in Go
+
+- No thread primitives
+- Go routines 
+
 
 * Go routines
 
 
-* Internals of go routines
-
-
 * Channels
-
-
-* CSP
 
 
 * Exercise
