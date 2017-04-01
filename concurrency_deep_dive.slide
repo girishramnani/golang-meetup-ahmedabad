@@ -96,9 +96,50 @@ girishramnani95@gmail.com
 
 * Channels
 
+- Communication
+- Locking 
+
+* Example 
+
+.play assets_cdd/code/channel_1.go
+
+* Cont ..
+
+.play assets_cdd/code/channel_2.go 
+
+* Solutions
+
+.play assets_cdd/code/channel_3.go /^func main/,/^}/
+
+.play assets_cdd/code/channel_4.go /^func main/,/^}/
 
 
-* Using Channels
+* Select
+
+Used to wait on multiple channels
+
+    select {
+
+        case data := <-channel :
+            fmt.Println("got data ",data)
+        case <- time.After(1*time.Second) :
+            fmt.Println("sorry timed out")
+
+    }
+
+
+can have a default section
+
+    ....
+
+    default:
+        fmt.Println("Cant wait for the go routine")
+    
+
+* Select Example #1
+
+.code assets_cdd/code/waitTimeout.go 
+
 
 
 * Exercise
@@ -138,7 +179,14 @@ By creating a function
 Find the index of one from the right side for a data word.
     Eg. 1001000 -> 3
 
-* Exercise 2 (Intermediate) 
+
+* Exercise 2
+
+Create an atomic counter which doesn't use channels and mutexes. 
+
+.link assets_cdd/code/atomicCounter.zip Counter
+
+* Exercise 3 (Intermediate) 
 
 You have given a database which is ACID complient or so it says!!.
 Now to be sure you need to implement pessimistic Concurrency control 
