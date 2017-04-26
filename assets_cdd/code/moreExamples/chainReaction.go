@@ -6,6 +6,8 @@ import (
 	"fmt"
 )
 
+// START OMIT
+
 func f(left, right chan int) {
 	left <- 1 + <-right
 }
@@ -25,3 +27,5 @@ func main() {
 	}(right)
 	fmt.Println(<-leftmost)
 }
+
+// END OMIT

@@ -40,10 +40,14 @@ func merge(chs ...<-chan int) <-chan int {
 }
 
 func main() {
+	// Generate a common channel with input numbers
 	gen := NumberGenerator()
-	even := EvenGenerator(gen)     //pipe
-	even1 := EvenGenerator(gen)    //pipe
-	mergeOut := merge(even, even1) //fan in
+	// Fan-out the channel to 2 go routines
+	even1 := EvenGenerator(gen)
+	even2 := EvenGenerator(gen)
+	// Fan in the resulting even numbers
+	mergeOut := merge(even1, even2)
+	// provide a timeout to the stop the generation
 	timeout := time.After(time.Millisecond * 5)
 	for {
 		select {
