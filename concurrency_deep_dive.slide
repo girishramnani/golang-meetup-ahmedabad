@@ -4,11 +4,14 @@ Concurrency Deep Dive
 Girish Ramnani
 girishramnani95@gmail.com
 
+Devarsh Shah
+devarshmshah@gmail.com
+
 * Overview
 
 - Theory
 - Concurrency Models
-- CSP 
+- CSP
 - Channels and go routines
 - Concurrency patterns
 - atomic package
@@ -29,7 +32,7 @@ girishramnani95@gmail.com
 
 *** Advantages
 
-- Control 
+- Control
 - Performance
 - Responsive User Interface
 
@@ -37,7 +40,7 @@ girishramnani95@gmail.com
 
 - Poor Performance
 - Memory Consumption
-- Shared Memory 
+- Shared Memory
 
 * Events
 
@@ -79,33 +82,33 @@ girishramnani95@gmail.com
 * Concurrency in Go
 
 - No thread primitives
-- Go routines 
-- Channels 
+- Go routines
+- Channels
 
 * Go routines
 
-.play assets_cdd/code/goroutine_1.go 
+.play assets_cdd/code/goroutine_1.go
 
 * Using WaitGroup
 
-.play assets_cdd/code/goroutine_1_m.go 
+.play assets_cdd/code/goroutine_1_m.go
 
-* Example 
+* Example
 
 .link stockData assets_cdd/code/goroutine_2.go
 
 * Channels
 
 - Communication
-- Locking 
+- Locking
 
-* Example 
+* Example
 
 .play assets_cdd/code/channel_1.go
 
 * Cont ..
 
-.play assets_cdd/code/channel_2.go 
+.play assets_cdd/code/channel_2.go
 
 * Solutions
 
@@ -134,21 +137,21 @@ can have a default section
 
     default:
         fmt.Println("Cant wait for the go routine")
-    
+
 
 * Select Example #1
 
-.code assets_cdd/code/waitTimeout.go 
+.code assets_cdd/code/waitTimeout.go
 
 
 
 * Exercise
 
-Lets parallelize this code 
+Lets parallelize this code
 
 .play assets_cdd/code/getpages.go /^func main/,/^}/
 
-* Lets go simple 
+* Lets go simple
 
 By creating a function
 
@@ -156,7 +159,7 @@ By creating a function
 
 * So the main func becomes
 
-.play assets_cdd/code/getpages_c1.go /^func main/,/^}/ 
+.play assets_cdd/code/getpages_c1.go /^func main/,/^}/
 
 * Some thing wrong there?
 
@@ -174,6 +177,36 @@ By creating a function
 
 .link assets_cdd/code/pipeline.go here is the full code
 
+* Power of Go Routines
+
+.play -edit assets_cdd/code/moreExamples/chainReaction.go /START OMIT/,/END OMIT/
+
+* FanIn-FanOut
+
+.play assets_cdd/code/moreExamples/fanin.go /^func main/,/^}/
+
+* Cont ..
+
+.play assets_cdd/code/moreExamples/fanin.go /^func merge/,/^}/
+
+.link assets_cdd/code/moreExamples/fanin.go here is the full code
+
+* Pub Sub
+
+.play assets_cdd/code/moreExamples/pubsub.go /^func main/,/^}/
+
+* Cont ..
+
+.play assets_cdd/code/moreExamples/pubsub.go /START OMIT/,/END OMIT/
+
+* Rate Limiter
+
+.play -edit assets_cdd/code/moreExamples/rateLimiter.go /^func main/,/^}/
+
+* Tcp Chat Server
+
+.link assets_cdd/code/moreExamples/tcp_chatServer.go
+
 * Exercise 1
 
 Find the index of one from the right side for a data word.
@@ -182,17 +215,17 @@ Find the index of one from the right side for a data word.
 
 * Exercise 2
 
-Create an atomic counter which doesn't use channels and mutexes. 
+Create an atomic counter which doesn't use channels and mutexes.
 
 .link assets_cdd/code/atomicCounter.zip Counter
 
-* Exercise 3 (Intermediate) 
+* Exercise 3 (Intermediate)
 
 You have given a database which is ACID complient or so it says!!.
-Now to be sure you need to implement pessimistic Concurrency control 
+Now to be sure you need to implement pessimistic Concurrency control
 over the database. Try to not look the whole DB for a single transaction.
 Just create the locking mechanism here.
 
 .link assets_cdd/code/mapped_mutex.zip Testfile
 
-* Thank you 
+* Thank you
