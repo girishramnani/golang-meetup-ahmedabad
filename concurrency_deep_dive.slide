@@ -82,20 +82,20 @@ devarshmshah@gmail.com
 * Concurrency in Go
 
 - No thread primitives
-- Go routines
-- Channels
+- Go routines 
+- Channels 
 
 * Go routines
 
-.play assets_cdd/code/goroutine_1.go
+.play -edit assets_cdd/code/goroutine_1.go 
 
 * Using WaitGroup
 
-.play assets_cdd/code/goroutine_1_m.go
+.play -edit assets_cdd/code/goroutine_1_m.go 
 
-* Example
+* Example 
 
-.link stockData assets_cdd/code/goroutine_2.go
+.link assets_cdd/code/goroutine_2.go stockData
 
 * Channels
 
@@ -104,17 +104,17 @@ devarshmshah@gmail.com
 
 * Example
 
-.play assets_cdd/code/channel_1.go
+.play -edit assets_cdd/code/channel_1.go
 
 * Cont ..
 
-.play assets_cdd/code/channel_2.go
+.play -edit assets_cdd/code/channel_2.go 
 
 * Solutions
 
-.play assets_cdd/code/channel_3.go /^func main/,/^}/
+.play -edit assets_cdd/code/channel_3.go /^func main/,/^}/
 
-.play assets_cdd/code/channel_4.go /^func main/,/^}/
+.play -edit assets_cdd/code/channel_4.go /^func main/,/^}/
 
 
 * Select
@@ -137,7 +137,7 @@ can have a default section
 
     default:
         fmt.Println("Cant wait for the go routine")
-
+    
 
 * Select Example #1
 
@@ -149,17 +149,17 @@ can have a default section
 
 Lets parallelize this code
 
-.play assets_cdd/code/getpages.go /^func main/,/^}/
+.play -edit assets_cdd/code/getpages.go /^func main/,/^}/
 
 * Lets go simple
 
 By creating a function
 
-.code assets_cdd/code/getpages_c1.go /^func getHTML/,/^}/
+.code -edit assets_cdd/code/getpages_c1.go /^func getHTML/,/^}/
 
 * So the main func becomes
 
-.play assets_cdd/code/getpages_c1.go /^func main/,/^}/
+.play assets_cdd/code/getpages_c1.go /^func main/,/^}/ 
 
 * Some thing wrong there?
 
@@ -173,7 +173,7 @@ By creating a function
 
 * running the code
 
-.play assets_cdd/code/pipeline.go /^func main/,/^}/
+.play -edit assets_cdd/code/pipeline.go /^func main/,/^}/
 
 .link assets_cdd/code/pipeline.go here is the full code
 
@@ -215,17 +215,17 @@ Find the index of one from the right side for a data word.
 
 * Exercise 2
 
-Create an atomic counter which doesn't use channels and mutexes.
+Create an atomic counter which doesn't use channels and mutexes. 
 
 .link assets_cdd/code/atomicCounter.zip Counter
 
-* Exercise 3 (Intermediate)
+* Exercise 3 (Intermediate) 
 
 You have given a database which is ACID complient or so it says!!.
-Now to be sure you need to implement pessimistic Concurrency control
+Now to be sure you need to implement pessimistic Concurrency control 
 over the database. Try to not look the whole DB for a single transaction.
 Just create the locking mechanism here.
 
 .link assets_cdd/code/mapped_mutex.zip Testfile
 
-* Thank you
+* Thank you 
