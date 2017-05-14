@@ -10,8 +10,32 @@ https://girishramnani.gitub.io/
 
 * Introduction
 
++ Golang has really mature and high level api for HTTP.
++ Even supports HTTP/2.
+
 
 * Philosophy
+
+Developers in golang prefer to write their application from scratch.
+They prefer not to reply on frameworks. We will "try" to follow this 
+Philosophy.
+
+* HTTP 
+
++ Text based protocol
++ Uses TCP
++ Stateless
++ 
+
+* HTTP Server Components
+
++ Router
++ HTTP protocol implementation
++ Templating
++ Middleware (More of a convinience)
+
+
+
 
 
 
