@@ -1,5 +1,6 @@
 package main
 
+import "fmt"
 
 func generate(nums ...int) <-chan int {
     out := make(chan int)
