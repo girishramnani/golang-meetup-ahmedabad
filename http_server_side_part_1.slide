@@ -10,33 +10,113 @@ https://girishramnani.gitub.io/
 
 * Introduction
 
-+ Golang has really mature and high level api for HTTP.
-+ Even supports HTTP/2.
+- Golang has really mature and high level api for HTTP.
+- Even supports HTTP/2.
 
 
 * Philosophy
 
 Developers in golang prefer to write their application from scratch.
-They prefer not to reply on frameworks. We will "try" to follow this 
+They prefer not to rely on frameworks. We will "try" to follow this
 Philosophy.
 
-* HTTP 
+* HTTP
 
-+ Text based protocol
-+ Uses TCP
-+ Stateless
-+ 
+- Text based protocol
+- Uses TCP
+- Stateless
+- Request Response Model
+
+* HTTP 1.1 Improvements
+
+- Persistent Connections (single connection for multiple Request-Response)
+- Http Pipelining (FIFO model)
+- Chunk Transfer Encoding (Streaming insted of buffering)
+
+* Advantages of HTTP 1.1
+
+- Reduce network congestion (fewer TCP connections)
+- Reduce latency in subsequent request (no handshaking)
+- Lower CPU and memory usage (fewer connections open simultaneously)
+- Better performance for HTTPS connection which require much more CPU time and network round-trips
 
 * HTTP Server Components
 
-+ Router
-+ HTTP protocol implementation
-+ Templating
-+ Middleware (More of a convinience)
+- Router
+- HTTP protocol implementation
+- Templating
+- Middleware (More of a convinience)
 
+* Basic HTTP Building Blocks
 
+- Use the standard library for as long as possible
+- You may not need an external package at all
+- Use http.Handler and http.HandlerFunc
 
+  type Handler interface {
+    ServeHTTP(ResponseWriter, *Request)
+  }
 
+  type HandlerFunc func(ResponseWriter, *Request)
 
+  // ServeHTTP calls f(w, r).
+  func (f HandlerFunc) ServeHTTP(w ResponseWriter, r *Request) {
+    f(w, r)
+  }
+
+Remember this signature
+
+  func(w http.ResponseWriter, r *http.Request)
+
+* http.ResponseWriter
+
+  // A ResponseWriter interface is used by an HTTP handler to
+  // construct an HTTP response.
+  type ResponseWriter interface {
+    Header() Header
+    Write([]byte) (int, error)
+    WriteHeader(int)
+  }
+
+* http.Request
+
+http.Request contains everything you need to know about the request.
+
+- `r.Method` - HTTP method (`GET`, `POST`, `PUT`, `PATCH`, `DELETE` etc.)
+- `r.URL.Path` - Request path (`/things/123`)
+- `r.URL.String()` - Full URL
+- `r.URL.Query()` - Query parameters (q=something&p=2)
+- `r.Body` - `io.ReadCloser` of the request body
+
+* Routing
+
+- GET /person -> handlePerson
+
+  http.handleFunc("/", handleIndex)
+  http.handleFunc("/time", handleTime)
+  http.handleFunc("/person", handlePerson)
+
+Gotchas:
+
+- / matches *eveything*
+- No path variable parsing
+- No pattern matching
+- One handler for every HTTP method
+- SubRouting not supported
+
+* Simple API Server
+
+* Middlewares
+
+Run a code before and after the handler code
+
+.code /assets_http/code/middlewarePattern.go /^type Middleware/,/^}/
+.code /assets_http/code/middlewarePattern.go /^func ComposeMiddleWare/,/^}/
+
+* Cont ...
+
+How it all fits together
+
+.code /assets_http/code/middlewarePattern.go /^func main/,/^}/
 
 
