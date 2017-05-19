@@ -104,6 +104,13 @@ Gotchas:
 - One handler for every HTTP method
 - SubRouting not supported
 
+* If you want parametric routes use `gorrila-mux`
+
+    r := mux.NewRouter()
+    r.HandleFunc("/products/{key}", ProductHandler)
+    r.HandleFunc("/articles/{category}/", ArticlesCategoryHandler)
+    r.HandleFunc("/articles/{category}/{id:[0-9]+}", ArticleHandler)
+
 * Simple API Server
 
 * Middlewares
@@ -118,5 +125,24 @@ Run a code before and after the handler code
 How it all fits together
 
 .code /assets_http/code/middlewarePattern.go /^func main/,/^}/
+
+* Exercises 
+
+* Add a http Auth to this simple reverse proxy application.
+
+.link /assets_http/code/httpProxy.go httpProxy
+
+Snippets
+    
+      # to show basic auth window.
+      w.Header().Set("WWW-Authenticate", "Basic realm=\"user\"")
+      http.Error(w, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)
+
+NOTE - The `Authorization` header has the basic auth
+
+    # to decode a base64 string
+    base64.StdEncoding.DecodeString
+
+* Create a login screen  
 
 
