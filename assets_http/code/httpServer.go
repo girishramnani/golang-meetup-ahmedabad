@@ -1,11 +1,13 @@
 package main
 
 import (
+	"bufio"
+	"fmt"
 	"net/http"
-	"strings"
 	"time"
 )
 
+//START OMIT
 type Time struct {
 	format string
 }
@@ -13,18 +15,18 @@ type Time struct {
 func (t Time) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(time.Now().Format(t.format)))
 }
+
+func IndexHandler(w http.ResponseWriter, r *http.Request) {
+	wr := bufio.NewWriter(w)
+	wr.WriteString("Hello GoLang World")
+	wr.Flush()
+}
+
 func main() {
 	th := Time{format: time.RFC1123}
 	http.HandleFunc("/", IndexHandler)
 	http.Handle("/time", th)
 	http.ListenAndServe(":3000", nil)
 }
-func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	name := r.FormValue("name")
-	if name != "" {
-		name = strings.ToUpper(name)
-		w.Write([]byte(name))
-	} else {
-		w.Write([]byte("Welcome "))
-	}
-}
+
+//END OMIT

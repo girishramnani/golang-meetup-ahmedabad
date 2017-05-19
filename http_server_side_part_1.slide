@@ -111,11 +111,27 @@ Gotchas:
     r.HandleFunc("/articles/{category}/", ArticlesCategoryHandler)
     r.HandleFunc("/articles/{category}/{id:[0-9]+}", ArticleHandler)
 
-* Simple API Server
+* Simple Web Server
+
+.code /assets_http/code/httpServer.go /START OMIT/,/END OMIT/
+
 
 * Middlewares
 
-Run a code before and after the handler code
+- Run a code before and after the handler code
+- Single responsibility
+- Pluggable and self-contained
+- Just another layer in your request handling cycle
+
+Go's `net/http` package functions `StripPrefix` & `TimeoutHandler`
+are exaclty what we define as middlewares
+
+  func StripPrefix(prefix string, h Handler) Handler
+
+  func TimeoutHandler(h Handler, dt time.Duration, msg string) Handler
+
+
+* Writing Middleware in Go
 
 .code /assets_http/code/middlewarePattern.go /^type Middleware/,/^}/
 .code /assets_http/code/middlewarePattern.go /^func ComposeMiddleWare/,/^}/
@@ -125,6 +141,26 @@ Run a code before and after the handler code
 How it all fits together
 
 .code /assets_http/code/middlewarePattern.go /^func main/,/^}/
+
+
+* Advance Middlewares Goals (Post Middlewares)
+
+The Problem:
+
+- Calling `Write()` before handler, handler will lose control over status code, since the first `Write()` writes them out immediately.
+- Modifying the original output, i.e replacing strings in it.
+- Changing response status code: when the wrapped handler returns
+
+Solution:
+
+- Buffered Response Writer
+- Ability to record mutations for later use or inspection
+
+* Meet ResponseRecorder
+
+Definition: ResponseRecorder is an implementation of http.ResponseWriter that records its mutations for later inspection in tests.
+
+.code /assets_http/code/httpResponseRecorder.go /START OMIT/,/END OMIT/
 
 * Exercises 
 
@@ -144,5 +180,6 @@ NOTE - The `Authorization` header has the basic auth
     base64.StdEncoding.DecodeString
 
 * Create a login screen  
+
 
 
