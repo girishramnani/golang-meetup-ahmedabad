@@ -12,6 +12,8 @@ https://girishramnani.gitub.io/
 
 - Golang has really mature and high level api for HTTP.
 - Even supports HTTP/2.
+- Each handle function runs in its own go routine.
+- Low memory footprint.
 
 
 * Philosophy
@@ -45,7 +47,7 @@ Philosophy.
 - Router
 - HTTP protocol implementation
 - Templating
-- Middleware (More of a convinience)
+- Middleware (More of a convenience)
 
 * Basic HTTP Building Blocks
 
@@ -111,11 +113,78 @@ Gotchas:
     r.HandleFunc("/articles/{category}/", ArticlesCategoryHandler)
     r.HandleFunc("/articles/{category}/{id:[0-9]+}", ArticleHandler)
 
+
 * Simple Web Server
 
 .code /assets_http/code/httpServer.go /START OMIT/,/END OMIT/
 
+* Managing static Files
 
+You can use the 
+    http.FileServer 
+to create a route to static files.
+
+    package main
+
+    import (
+      "net/http"
+    )
+
+    func main() {
+      // Simple static webserver:
+      http.Handle("/Miniconda3/", http.StripPrefix("/Miniconda3/",
+      http.FileServer(http.Dir("C:\\"))))
+      http.ListenAndServe(":8089", nil)
+    }
+
+
+* Templates
+
+- Golang has a full featured templating language.
+- Two templating packages
+  - html/template
+  - text/template
+
+NOTE - we will use `html/template` because it provides
+some advantages in html template rendering.
+
+* Template Basics
+
+* Parsing 
+
+.play -edit assets_http/code/template_1.go 
+
+* Rendering on request 
+
+    func populateTemplates() *template.Template {
+      result := template.New("templates")
+      const basePath = "templates"
+      template.Must(result.ParseGlob(basePath + "/*.html"))
+      return result
+    }
+
+    templates := populateTemplates()
+    templates.Lookup("testing.html").Execute(os.StdOut,nil)
+
+* Sending Data using context
+
+.play -edit assets_http/code/template_2.go 
+
+* Conditionals
+
+.play -edit assets_http/code/template_3.go /^func main/,/^}/
+
+** Similarly you have 
+
+- Ranges
+    {{range .Items }} {{ .InnerData }} {{end}}
+
+- Sub templates
+    {{define "header" }} <head></head> {{end}}
+    // Use it in another template like 
+    {{ template "header" .}}
+
+    
 * Middlewares
 
 - Run a code before and after the handler code
@@ -179,21 +248,27 @@ NOTE - The `Authorization` header has the basic auth
     # to decode a base64 string
     base64.StdEncoding.DecodeString
 
-* Create a login screen
-
 * Middleware
 
 - Create a middleware to support HTTP methods (GET,POST,PUT etc)
 
-Desired Result
+.link assets_http/code/requestMethodMiddleware.go middleware.go
 
-  post := RequestMethodMiddleware("POST")
-  get := RequestMethodMiddleware("GET")
-  myHandlerGet := get(myHandler)
-  myHandlerPost := post(myHandler)
-  http.Handle("/postEndPoint", myHandlerPost)
-  http.Handle("/getEndPoint", myHandlerGet)
+* Create a middleware with a short circuit timer which takes a param.
 
+Please open a PR with your solution on 
+
+.link http://github.com/girishramnani/golang-meetup-ahmedabad Github
+
+add you code in the 
+
+    assets_http/code/short_circuit
+
+* Libraries out there
+
+.link https://beego.me/ beego
+.link https://gin-gonic.github.io/gin/ Gin
+.link http://www.gorillatoolkit.org/ Gorilla ( More of a toolkit )
 
 
 
