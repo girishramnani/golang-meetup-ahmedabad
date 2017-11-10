@@ -1,0 +1,113 @@
+
+Introduction to context package
+
+Devarsh Shah
+devarshmshah@gmail.com
+
+* Why Context Exists
+
+- Ability to cancel long running request or set deadline for a request
+- Need to propogate that timeout across the request
+- Enquire about the deadline in middle of the request
+- Carry request scoped data i.e security credentials, request Id
+
+* Cancelation
+
+Abandon work when the caller no longer needs the result.
+
+- user navigates away, closes connection
+- operation exceeds its deadline
+
+
+Efficiently canceling unneeded work saves resources.
+
+* Cancelation is advisory
+
+Cancelation does not stop execution or trigger panics.
+
+Cancelation informs code that its work is no longer needed.
+
+Code checks for cancelation and decides what to do:
+shut down, clean up, return errors.
+
+* Cancelation is transitive
+
+Canceling a function should cancel all functions that are running on its behalf.
+
+Cancelation information should be broadcast from caller down to all of its child functions.
+
+* Context
+
+A Context carries a cancelation signal and request-scoped values to all functions running on behalf of the same task. It's safe for concurrent access.
+
+  type Context interface {
+    Done() <-chan struct{}                   // closed when this Context is canceled
+    Err() error                              // why this Context was canceled
+    Deadline() (deadline time.Time, ok bool) // when this Context will be canceled
+    Value(key interface{}) interface{}       // data associated with this Context
+  }
+
+*Idiom:* pass ctx as the first argument to a function.
+
+  import "context"
+
+  // ReadFile reads file name and returns its contents.
+  // If ctx.Done is closed, ReadFile returns ctx.Err immediately.
+  func ReadFile(ctx context.Context, name string) ([]byte, error)
+
+* Contexts are hierarchical
+
+- Context has no Cancel method
+- Passing a Context to a function does not pass the ability to cancel that Context
+- Contexts form a tree, any subtree of which can be canceled.
+
+* Context functions
+
+  func Background() Context
+
+  func TODO() Context
+
+  func WithCancel(parent Context) (ctx Context, cancel CancelFunc)
+
+  func WithDeadline(parent Context, deadline time.Time) (Context, CancelFunc)
+
+  func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc)
+
+  func WithValue(parent Context, key, val interface{}) Context
+
+* Creating a Context
+
+  ctx := context.Background()
+
+Background returns a non-nil, empty Context. It is never canceled, has no values, and has no deadline.
+
+It is typically used as the top-level Context for incoming requests, main function, initialization
+
+
+* Example Without Context
+
+.code assets_context/code.go /START4 OMIT/,/STOP4 OMIT/
+
+* Adding Context
+
+.code assets_context/code.go /START3 OMIT/,/STOP3 OMIT/
+
+* Adding Cancelation to our context: WithCancel
+
+.code assets_context/code.go /START2 OMIT/,/STOP2 OMIT/
+
+* Adding Cancelation to our context: WithDeadline
+
+.code assets_context/code.go /START1 OMIT/,/STOP1 OMIT/
+
+- WithTimeOut
+
+  func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc) {
+    return WithDeadline(parent, time.Now().Add(timeout))
+  }
+
+* Passing Request Scoped data into context: WithValue
+
+.code assets_context/code.go /START4 OMIT/,/STOP4 OMIT/
+
+
