@@ -4,6 +4,17 @@ Introduction to context package
 Devarsh Shah
 devarshmshah@gmail.com
 
+* Some History
+
+The idea to create Context was posted by [[https://groups.google.com/forum/#!msg/golang-nuts/teSBtPvv1GQ/U12qA9N51uIJ][Brad Fitzpatrick]] to the go-nuts mailing list back in 2011.
+
+Later package Context was developed in Google to make it easy to pass request specific values, cancelation, timeout and deadline signals to all goroutines involved in handling a request. Package started it's life under *golang.org/x/net/context*
+
+After becoming more popular and proving to be essential to many Go applications, package was moved [[https://github.com/golang/go/issues/14660][(GitHub issue)]] to standard library and named *context* since context by itself has little to do with networking by itself.
+
+The support for contexts has been added to the [[https://golang.org/pkg/net/][net]], [[https://golang.org/pkg/net/http/][net/http]], [[https://golang.org/pkg/database/sql/][database/sql]] and [[https://golang.org/pkg/os/exec/][os/exec]] packages.
+
+
 * Why Context Exists
 
 - Ability to cancel long running request or set deadline for a request
@@ -98,9 +109,9 @@ It is typically used as the top-level Context for incoming requests, main functi
 
 * Adding Cancelation to our context: WithDeadline
 
-.code assets_context/code.go /START1 OMIT/,/STOP1 OMIT/
+.code assets_context/code.go /START6 OMIT/,/STOP6 OMIT/
 
-- WithTimeOut
+* Adding Cancelation to our context: WithTimeout
 
   func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc) {
     return WithDeadline(parent, time.Now().Add(timeout))
@@ -108,6 +119,12 @@ It is typically used as the top-level Context for incoming requests, main functi
 
 * Passing Request Scoped data into context: WithValue
 
-.code assets_context/code.go /START4 OMIT/,/STOP4 OMIT/
+.code assets_context/code.go /START5 OMIT/,/STOP5 OMIT/
+
+
+* Refernces
+
+.link https://golang.org/pkg/context/
+.link https://talks.golang.org/2014/gotham-context.slide
 
 

@@ -88,5 +88,33 @@ func Stream(out chan<- Value) error {
   }
 
   //somewhere inside a handler
-  v, ok := ctx.Value(RequestIdType).(int);
+  ctx := r.Context() // HL
+  v, ok := ctx.Value(RequestIdType).(int); // HL
 // STOP5 OMIT
+
+// START6 OMIT
+func DoSum() float64
+{
+  db, _ := sql.Open("oci8", "connection string...")
+  ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(time.Millisecond*500)) // HL
+  defer cancel() // HL
+  ch = make(chan float64)
+  go makeDbCall(ctx, db, ch)
+  select {
+    case <-ctx.Done():
+        fmt.Print(ctx.Err())
+        return
+    case sum := <- ch:
+        return sum
+  }
+}
+func makeDbCall(ctx context.Context, db *sql.DB, out chan<- float64) {
+  ok, deadline := ctx.Deadline()
+  //check if deadline is near and decide not to proceed
+  row := db.QueryRowContext(ctx, "select sum(balance) from accounts") // HL
+  var sum float64
+  err := row.Scan(&sum)
+  checkErr(err)
+  out <- sum // HL
+}
+// STOP6 OMIT

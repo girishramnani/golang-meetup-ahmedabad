@@ -10,3 +10,5 @@ cd golang-meetup-ahmedabad
 present 
 
 ```
+
+http://go-talks.appspot.com/github.com/girishramnani/golang-meetup-ahmedabad/context_intro.slide#1
